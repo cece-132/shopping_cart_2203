@@ -2,7 +2,6 @@ require './lib/product'
 require './lib/shopping_cart'
 
 RSpec.describe ShoppingCart do
-
   before :each do
     @cart = ShoppingCart.new("King Soopers", "30items")
 
@@ -60,21 +59,30 @@ RSpec.describe ShoppingCart do
   end
 
   describe '#is_full?' do
-    it 'returns false if @capacity is equal to total products' do
+    before :each do
       @cart.add_product(@product1)
       @cart.add_product(@product2)
       @cart.add_product(@product3)
+    end
 
+    it 'returns false if @capacity is equal to total products' do
       expect(@cart.is_full?).to eq false
     end
 
     it 'returns false if @capacity is not equal to total products' do
+      @cart.add_product(@product4)
+      expect(@cart.is_full?).to eq true
+    end
+  end
+
+  describe '#products_by_category(products)' do
+    it 'can sort @products array by category' do
       @cart.add_product(@product1)
       @cart.add_product(@product2)
       @cart.add_product(@product3)
       @cart.add_product(@product4)
-
-      expect(@cart.is_full?).to eq true
+      expect(@cart.products_by_category(:paper)).to be_a Array
+      expect(@cart.products_by_category(:paper)).to eq [@product1, @product3]
     end
   end
     

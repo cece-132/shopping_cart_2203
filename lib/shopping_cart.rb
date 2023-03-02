@@ -31,4 +31,11 @@ class ShoppingCart
   def is_full?
     total_number_of_products >= 30
   end
+
+  def products_by_category(category)
+    @products.map do |product|
+      product if product.category == category
+    end.compact
+    
+  end
 end

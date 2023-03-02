@@ -3,7 +3,7 @@ require './lib/product'
 RSpec.describe Product do
 
   before :each do
-    @product = Product.new(:paper, 'toilet paper', 3.70, 10)
+    @product = product = Product.new(:paper, 'toilet paper', 3.70, '10')
     @product2 = Product.new(:meat, 'chicken', 4.50, '2')
   end
 
@@ -22,8 +22,8 @@ RSpec.describe Product do
       expect(@product.unit_price).to eq 3.70
       expect(@product.unit_price).to be_a Float
 
-      expect(@product.quantity).to eq 10
-      expect(@product.quantity).to be_a Integer
+      expect(@product.quantity).to eq '10'
+      expect(@product.quantity).to be_a String
 
       expect(@product.hoarded).to eq false
     end
