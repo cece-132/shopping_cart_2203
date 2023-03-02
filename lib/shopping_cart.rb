@@ -5,24 +5,27 @@ class ShoppingCart
 
   attr_reader :name, :capacity, :products
 
-  def initialize(name,capacity)
-  @name = name
-  @capacity = 30
-  @products = []
+  def initialize(name, capacity)
+    @name = name
+    @capacity = 30
+    @products = []
   end
 
   def add_product(product)
     products << product
   end
 
-  def details(detail)
-     detal << initialize
+  def details
+    {
+      name: @name,
+      capacity: @capacity
+    }
   end
 
   def total_number_of_products
     total = 0
     products.each do |product|
-      product.quantity.to_i += total
+      product.quantity += total
     end
     # (quantity)
     # @products.count * quantity = total_number_of_products
