@@ -85,5 +85,11 @@ RSpec.describe ShoppingCart do
       expect(@cart.products_by_category(:paper)).to eq [@product1, @product3]
     end
   end
+
+  describe '#percentage_occupied' do
+    it 'calculates how full the cart is in percent' do
+      
+    end
+  end
     
 end
