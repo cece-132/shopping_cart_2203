@@ -7,12 +7,12 @@ class ShoppingCart
 
   def initialize(name, capacity)
     @name = name
-    @capacity = 30
+    @capacity = capacity.scan(/\d+|\D+/).first.to_i
     @products = []
   end
 
   def add_product(product)
-    products << product
+    @products << product
   end
 
   def details
@@ -23,18 +23,12 @@ class ShoppingCart
   end
 
   def total_number_of_products
-    total = 0
-    products.each do |product|
-      product.quantity += total
+    @products.sum do |product|
+      product.quantity.to_i
     end
-    # (quantity)
-    # @products.count * quantity = total_number_of_products
-    # return total_number_of_products
   end
 
   def is_full?
-    if total_number_of_products == 30
-      true
-    end
+    total_number_of_products >= 30
   end
 end
