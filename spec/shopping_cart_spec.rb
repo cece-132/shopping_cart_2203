@@ -95,5 +95,37 @@ RSpec.describe ShoppingCart do
       expect(@cart.percentage_occupied).to eq 43.33
     end
   end
+
+  describe '#sorted_products_by_quantity' do
+    it 'sorts products by quantity in desc order' do
+      @cart.add_product(@product1)
+      @cart.add_product(@product2)
+      @cart.add_product(@product3)
+      @cart.add_product(@product4)
+
+      expected = [
+        @product4, @product1, @product2, @product3
+      ]
+      expect(@cart.sorted_products_by_quantity).to eq expected
+    end
+  end
+
+  describe '#product_breakdown' do
+    it 'sorts products by category' do
+      @cart.add_product(@product1)
+      @cart.add_product(@product2)
+      @cart.add_product(@product3)
+      @cart.add_product(@product4)
+
+      expected = {
+        :meat=>[@product2], 
+        :paper=> [@product1, @product3], 
+        :produce=> [@product4]
+      }
+
+      expect(@cart.product_breakdown).to eq expected
+      expect(@cart.product_breakdown).to be_a Hash
+    end
+  end
     
 end
