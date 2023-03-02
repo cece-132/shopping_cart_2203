@@ -36,6 +36,9 @@ class ShoppingCart
     @products.map do |product|
       product if product.category == category
     end.compact
-    
+  end
+
+  def percentage_occupied
+    ((total_number_of_products / @capacity.to_f)*100).round(2)
   end
 end

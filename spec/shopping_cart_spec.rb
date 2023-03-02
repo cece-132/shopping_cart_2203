@@ -88,7 +88,11 @@ RSpec.describe ShoppingCart do
 
   describe '#percentage_occupied' do
     it 'calculates how full the cart is in percent' do
-      
+      @cart.add_product(@product1)
+      @cart.add_product(@product2)
+      @cart.add_product(@product3)
+
+      expect(@cart.percentage_occupied).to eq 43.33
     end
   end
     
